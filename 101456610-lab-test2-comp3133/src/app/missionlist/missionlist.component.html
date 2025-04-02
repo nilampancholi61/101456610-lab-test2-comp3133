@@ -1,0 +1,55 @@
+
+<div class="mission-list">
+    <mat-card *ngFor="let launch of launches">
+      <mat-card-header>
+        <mat-card-title>{{ launch.mission_name }} ({{ launch.launch_year }})</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="launch.links.mission_patch_small" alt="mission image">
+      <mat-card-content>
+        <p>{{ launch.details }}</p>
+        <p>Rocket: {{ launch.rocket.rocket_name }} - {{ launch.rocket.rocket_type }}</p>
+        <a [href]="launch.links.article_link" target="_blank">Read More</a> |
+        <a [href]="launch.links.wikipedia" target="_blank">Wikipedia</a> |
+        <a [href]="launch.links.video_link" target="_blank">Video</a>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+<div>
+    <label for="year">Launch Year:</label>
+    <input type="number" id="year" [(ngModel)]="year">
+    <button (click)="onFilter()">Filter</button>
+  </div>
+
+
+<app-missionfilter (filterYear)="onFilter($event)"></app-missionfilter>
+<div class="mission-list">
+  <mat-card *ngFor="let launch of filteredLaunches">
+    <mat-card-header>
+      <mat-card-title>{{ launch.mission_name }} ({{ launch.launch_year }})</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="launch.links.mission_patch_small" alt="mission image">
+    <mat-card-content>
+      <p>{{ launch.details }}</p>
+      <p>Rocket: {{ launch.rocket.rocket_name }} - {{ launch.rocket.rocket_type }}</p>
+      <a [href]="launch.links.article_link" target="_blank">Read More</a> |
+      <a [href]="launch.links.wikipedia" target="_blank">Wikipedia</a> |
+      <a [href]="launch.links.video_link" target="_blank">Video</a>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+  
+  
+<div *ngIf="mission">
+    <h1>{{ mission.mission_name }} ({{ mission.launch_year }})</h1>
+    <img [src]="mission.links.mission_patch_small" alt="Mission Patch">
+    <p>{{ mission.details }}</p>
+    <p>Rocket: {{ mission.rocket.rocket_name }} - {{ mission.rocket.rocket_type }}</p>
+    <a [href]="mission.links.article_link" target="_blank">Read More</a> |
+    <a [href]="mission.links.wikipedia" target="_blank">Wikipedia</a> |
+    <a [href]="mission.links.video_link" target="_blank">Video</a>
+  </div>
+  
+  
